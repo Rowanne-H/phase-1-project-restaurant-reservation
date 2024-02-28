@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Reservation System</title>
+</head>
+
+<body>
+    <h1>Fantastic BBQ Reservation System</h1>
+    <h3>Restaurant & Bar</h3>
+    <div id="booking">
+        <div id="new-booking">
+            <p>New Booking</p>
+            <form action="" method="POST">
+                <label> Date:
+                    <input type="date" id="date" name="date" />
+                </label><br />
+                <label> Meals:
+                    <input type="radio" id="lunch" value="lunch">
+                    <label for="lunch">Lunch</label>
+                    <input type="radio" id="dinner" value="dinner" />
+                    <label for="dinner">Dinner</label>
+                </label><br />
+                <label> Number of people:
+                    <input type="number" id="quantity" name="number-of-people" min="1" max="10" />
+                </label><br />
+                <label> First Name:
+                    <input type="text" name="first-name" id="first-name" />
+                </label><br />
+                <label> Last Name:
+                    <input type="text" name="last-name" id="last-name" />
+                </label><br />
+                <label> Mobile:
+                    <input type="tel" id="phone" name="phone" pattern="04[0-9]{8}">
+                </label><br />
+                <label> Email:
+                    <input type="email" id="email" name="email">
+                </label><br />
+                <input type="submit" id="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
+    <div id="booking-info">
+        <div>
+            <p id="view-booking">Review And Edit Booking</p>
+            <button id="upcoming-bookings">Upcoming Bookings</button>
+            <button id="cancelled-bookings">Cancelled Bookings</button>
+            <button id="expired-bookings">Expired bookings</button>
+        </div>
+    </div>
+</body>
+
+</html>
