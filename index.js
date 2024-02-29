@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
             email: e.target.email.value,
         };
         booking.status = 'current';
-        renderBooking(booking); 
-        updateBooking(booking);
+        renderBooking(booking);
+        newBooking(booking); 
         form.reset();
     }
 
@@ -46,9 +46,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function getAllUpcomingBookings() {
+        let today = new Date();
+        console.log(today)
         fetch('http://localhost:3000/bookings')
         .then(res => res.json())
-        .then(bookings => bookings.forEach(booking => renderBooking(booking)))
+        .then(bookings => {
+            console.log(bookings)
+            const today = new Date();
+            let upComingBookings = bookings.filter(booking => {
+                console.log(new Date(booking.date))
+                return new Date(booking.date) > today
+
+            })
+            console.log(upComingBookings)
+            upComingBookings.forEach(uBooking => renderBooking(uBooking))
+        })
+    }
+
+    function newBooking(booking) {
+        fetch('http://localhost:3000/bookings', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(booking)
+        });
     }
 
     function updateBooking(booking) {
