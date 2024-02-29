@@ -24,17 +24,27 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderBooking(booking) {
         display.style.visibility = 'visible';
         let card = document.createElement('tr')
-        card.innerHTML = `
-            <td>${booking.date}</td>
-            <td>${booking.meal}</td>
-            <td>${booking.no}</td>
-            <td>${booking.name}</td>
-            <td>${booking.Mobile}</td>
-            <td>${booking.email}</td>
-            <td>
-                <select class="status">
-                    <option value="current">${booking.status}</option>
+        let text = `<td>${booking.date}</td>
+                    <td>${booking.meal}</td>
+                    <td>${booking.no}</td>
+                    <td>${booking.name}</td>
+                    <td>${booking.Mobile}</td>
+                    <td>${booking.email}</td>
+                    <td>
+                    <select class="status">
+                    `
+        if (booking.status === 'current') {
+            text += `
+                    <option value="current">current</option>
                     <option value="cancel">cancel</option>
+                    `
+        } else {
+            text += `
+                    <option value="cancel">cancel</option>
+                    <option value="current">current</option>
+                    `
+        }
+        card.innerHTML = text+`          
                 </select>
             </td>
         `

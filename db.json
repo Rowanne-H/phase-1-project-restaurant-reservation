@@ -8,7 +8,7 @@
       "name": "John Davies",
       "mobile": "0411110110",
       "email": "john@hotmail.com",
-      "status": "cancel"
+      "status": "current"
     },
     {
       "id": "7bff",
@@ -18,7 +18,7 @@
       "name": "David Smith",
       "mobile": "0404040404",
       "email": "d@hotmail.com",
-      "status": "cancel"
+      "status": "current"
     },
     {
       "id": "338b",
@@ -28,7 +28,7 @@
       "name": "Andy Le",
       "mobile": "0403010205",
       "email": "a@gmail.com",
-      "status": "cancel"
+      "status": "current"
     },
     {
       "id": "3465",
@@ -38,7 +38,7 @@
       "name": "Rose He",
       "mobile": "0406070808",
       "email": "r@yahoo.com",
-      "status": "cancel"
+      "status": "current"
     }
   ]
 }
