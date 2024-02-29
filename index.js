@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         display.appendChild(card);
         document.querySelector('.status').addEventListener('change', (e) => {
             booking.status = e.target.value
-            //updateBooking(booking)
+            updateBooking(booking)
         })
     }
 
@@ -49,6 +49,16 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch('http://localhost:3000/bookings')
         .then(res => res.json())
         .then(bookings => bookings.forEach(booking => renderBooking(booking)))
+    }
+
+    function updateBooking(booking) {
+        fetch(`http://localhost:3000/bookings/${booking.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(booking)
+        });
     }
 
    
