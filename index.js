@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let display = document.querySelector('#display');
 
     function handleSubmit(e) {
-        e.preventDefault();
         let booking = {
             date: e.target.date.value,
             meal: e.target.meals.value,
@@ -45,22 +44,18 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
-    function getAllUpcomingBookings() {
-        let today = new Date();
-        console.log(today)
-        fetch('http://localhost:3000/bookings')
-        .then(res => res.json())
-        .then(bookings => {
-            console.log(bookings)
-            const today = new Date();
-            let upComingBookings = bookings.filter(booking => {
-                console.log(new Date(booking.date))
-                return new Date(booking.date) > today
-
-            })
-            console.log(upComingBookings)
-            upComingBookings.forEach(uBooking => renderBooking(uBooking))
-        })
+    function getAllUpcomingBookings(e) {
+        if (e.target.className === '') {
+            e.target.className = 'selected';
+            let today = new Date();
+            fetch('http://localhost:3000/bookings')
+                .then(res => res.json())
+                .then(bookings => {
+                    const today = new Date();
+                    let upComingBookings = bookings.filter(booking => new Date(booking.date) > today)
+                    upComingBookings.forEach(uBooking => renderBooking(uBooking))
+                })
+        }
     }
 
     function newBooking(booking) {

@@ -69,7 +69,7 @@ button:hover, #display tr:hover {
     text-align: left;
 }
 
-#display th {
+#display th, .selected {
     background-color: rgb(241, 220, 152);
 }
 
