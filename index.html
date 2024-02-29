@@ -16,7 +16,7 @@
             <h3>New Booking</h3>
             <form>
                 <label> Date:
-                    <input type="date" id="date" name="date" required/>
+                    <input type="date" id="date" name="date"/>
                 </label>
                 <label> Meals:
                     <select id="meals">
@@ -25,19 +25,16 @@
                     </select>
                 </label>
                 <label> Number of people:
-                    <input type="number" id="number" min="1" max="10" required/>
+                    <input type="number" id="number" min="1" max="10"/>
                 </label>
-                <label> First Name:
-                    <input type="text" id="fname" autocomplete="off" required/>
-                </label>
-                <label> Last Name:
-                    <input type="text" id="lname" required/>
+                <label> Name:
+                    <input type="text" id="name" autocomplete="off" placeholder="e.g. John Doe"/>
                 </label>
                 <label> Mobile:
                     <input type="tel" id="mobile" autocomplete="off" />
                 </label>
                 <label> Email:
-                    <input type="email" id="email" autocomplete="off" required/>
+                    <input type="email" id="email" autocomplete="off" />
                 </label>
                 <button id="submit">Submit</button>
             </form>
@@ -50,7 +47,16 @@
                     <button id="cancelled-bookings">Cancelled Bookings</button>
                     <button id="expired-bookings">Expired bookings</button>
                 </div>
-                <div id="display"></div>
+                <table id="display">
+                    <tr>
+                      <th>Date</th>
+                      <th>Meal</th>
+                      <th>No of ppl</th>
+                      <th>Name</th>
+                      <th>Moble</th>
+                      <th>Email</th>
+                      <th>Status</th>
+                    </tr>
             </div>
         </div>
     </div>
@@ -58,3 +64,6 @@
 </body>
 
 </html>
+<tr>
+    
+</tr>

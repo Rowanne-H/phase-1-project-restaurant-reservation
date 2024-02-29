@@ -9,15 +9,35 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         let booking = {
             date: e.target.date.value,
-            meals: e.target.meals.value,
+            meal: e.target.meals.value,
             no: e.target.number.value,
-            fname: e.target.fname.value,
-            lnam: e.target.lname.value,
+            name: e.target.name.value,
             mobile: e.target.mobile.value,
             email: e.target.email.value,
-        }
-        
-        console.log(booking)
+        };
+        booking.status = 'current';
+        renderBooking(booking); 
+    }
+
+    function renderBooking(booking) {
+        display.style.visibility = 'visible';
+        let card = document.createElement('tr')
+        card.innerHTML = `
+            <td>${booking.date}</td>
+            <td>${booking.meal}</td>
+            <td>${booking.no}</td>
+            <td>${booking.name}</td>
+            <td>${booking.Mobile}</td>
+            <td>${booking.email}</td>
+            <td>
+                <select class="status">
+                    <option value="current">${booking.status}</option>
+                    <option value="cancel">cancel</option>
+                </select>
+            </td>
+        `
+        display.appendChild(card)
+
     }
 
     form.addEventListener('submit', handleSubmit)

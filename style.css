@@ -53,6 +53,23 @@ button {
     font-size: 12pt;
 }
 
-button:hover {
+button:hover, #display tr:hover {
     background-color: rgb(255, 213, 79);
 }
+
+#display {
+    border-collapse: collapse;
+    width: 100%;
+    visibility: hidden;
+}
+
+#display td, #display th {
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: left;
+}
+
+#display th {
+    background-color: rgb(241, 220, 152);
+}
+
