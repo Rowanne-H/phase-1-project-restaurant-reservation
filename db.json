@@ -1,3 +1,24 @@
 {
-    "bookings": []
+  "bookings": [
+    {
+      "id": "dac6",
+      "date": "2024-02-16",
+      "meal": "lunch",
+      "no": "1",
+      "name": "John Davies",
+      "mobile": "0411110110",
+      "email": "john@hotmail.com",
+      "status": "current"
+    },
+    {
+      "id": "7bff",
+      "date": "2024-02-06",
+      "meal": "dinner",
+      "no": "3",
+      "name": "David Smith",
+      "mobile": "0404040404",
+      "email": "d@hotmail.com",
+      "status": "current"
+    }
+  ]
 }

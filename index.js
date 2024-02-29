@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         booking.status = 'current';
         renderBooking(booking); 
+        updateBooking(booking);
+        form.reset();
     }
 
     function renderBooking(booking) {
@@ -39,16 +41,22 @@ document.addEventListener('DOMContentLoaded', () => {
         display.appendChild(card);
         document.querySelector('.status').addEventListener('change', (e) => {
             booking.status = e.target.value
-            console.log(booking)
+            //updateBooking(booking)
         })
     }
+
+    function getAllUpcomingBookings() {
+        fetch('http://localhost:3000/bookings')
+        .then(res => res.json())
+        .then(bookings => bookings.forEach(booking => renderBooking(booking)))
+    }
+
+   
 
     
 
     form.addEventListener('submit', handleSubmit)
-    uBookings.addEventListener('click', () =>{
-        display.innerHTML = 'u'
-    })
+    uBookings.addEventListener('click', getAllUpcomingBookings)
 
     cBookings.addEventListener('click', () =>{
         display.innerHTML = 'c'
