@@ -47,12 +47,30 @@ document.addEventListener('DOMContentLoaded', () => {
     function getAllUpcomingBookings(e) {
         if (e.target.className === '') {
             e.target.className = 'selected';
+            cBookings.className = '';
+            eBookings.className = '';
             let today = new Date();
             fetch('http://localhost:3000/bookings')
                 .then(res => res.json())
                 .then(bookings => {
                     const today = new Date();
                     let upComingBookings = bookings.filter(booking => new Date(booking.date) > today)
+                    upComingBookings.forEach(uBooking => renderBooking(uBooking))
+                })
+        }
+    }
+
+    function getAllCancelledBookings(e) {
+        if (e.target.className === '') {
+            e.target.className = 'selected';
+            uBookings.className = '';
+            eBookings.className = '';
+            let today = new Date();
+            fetch('http://localhost:3000/bookings')
+                .then(res => res.json())
+                .then(bookings => {
+                    const today = new Date();
+                    let upComingBookings = bookings.filter(booking => booking.status === 'cancel')
                     upComingBookings.forEach(uBooking => renderBooking(uBooking))
                 })
         }
@@ -79,16 +97,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-   
-
-    
-
     form.addEventListener('submit', handleSubmit)
     uBookings.addEventListener('click', getAllUpcomingBookings)
 
-    cBookings.addEventListener('click', () =>{
-        display.innerHTML = 'c'
-    })
+    cBookings.addEventListener('click', getAllCancelledBookings)
 
     eBookings.addEventListener('click', () =>{
         display.innerHTML = 'e'
