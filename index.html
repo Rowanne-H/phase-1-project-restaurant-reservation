@@ -16,7 +16,7 @@
             <h3>New Booking</h3>
             <form>
                 <label> Date:
-                    <input type="date" id="date" name="date" />
+                    <input type="date" id="date" name="date" required/>
                 </label>
                 <label> Meals:
                     <select id="meals">
@@ -25,19 +25,19 @@
                     </select>
                 </label>
                 <label> Number of people:
-                    <input type="number" id="number" min="1" max="10" />
+                    <input type="number" id="number" min="1" max="10" required/>
                 </label>
                 <label> First Name:
-                    <input type="text" id="first-name" autocomplete="off" />
+                    <input type="text" id="fname" autocomplete="off" required/>
                 </label>
                 <label> Last Name:
-                    <input type="text" id="last-name" />
+                    <input type="text" id="lname" required/>
                 </label>
                 <label> Mobile:
-                    <input type="tel" id="phone" autocomplete="off" />
+                    <input type="tel" id="mobile" autocomplete="off" />
                 </label>
                 <label> Email:
-                    <input type="email" id="email" autocomplete="off" />
+                    <input type="email" id="email" autocomplete="off" required/>
                 </label>
                 <button id="submit">Submit</button>
             </form>
