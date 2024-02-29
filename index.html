@@ -15,32 +15,32 @@
     <div id="booking">
         <div id="new-booking">
             <p>New Booking</p>
-            <form action="" method="POST">
+            <form>
                 <label> Date:
                     <input type="date" id="date" name="date" />
                 </label><br />
                 <label> Meals:
-                    <input type="radio" id="lunch" value="lunch">
+                    <input type="radio" id="lunch" />
                     <label for="lunch">Lunch</label>
-                    <input type="radio" id="dinner" value="dinner" />
+                    <input type="radio" id="dinner" />
                     <label for="dinner">Dinner</label>
                 </label><br />
                 <label> Number of people:
-                    <input type="number" id="quantity" name="number-of-people" min="1" max="10" />
+                    <input type="number" id="number" min="1" max="10" />
                 </label><br />
                 <label> First Name:
-                    <input type="text" name="first-name" id="first-name" />
+                    <input type="text"  id="first-name" autocomplete="off" />
                 </label><br />
                 <label> Last Name:
-                    <input type="text" name="last-name" id="last-name" />
+                    <input type="text" id="last-name" />
                 </label><br />
                 <label> Mobile:
-                    <input type="tel" id="phone" name="phone" pattern="04[0-9]{8}">
+                    <input type="tel" id="phone" autocomplete="off" />
                 </label><br />
                 <label> Email:
-                    <input type="email" id="email" name="email">
+                    <input type="email" id="email" autocomplete="off"/>
                 </label><br />
-                <input type="submit" id="submit" value="Submit" />
+                <input type="submit" />
             </form>
         </div>
         <div id="booking-info">
@@ -49,6 +49,7 @@
                 <button id="upcoming-bookings">Upcoming Bookings</button>
                 <button id="cancelled-bookings">Cancelled Bookings</button>
                 <button id="expired-bookings">Expired bookings</button>
+                <div id="display"></div>
             </div>
         </div>
     </div>
