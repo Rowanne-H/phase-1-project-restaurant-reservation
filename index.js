@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             email: e.target.email.value,
         };
         booking.status = 'current';
+        display.innerHTML = '';
         renderBooking(booking);
         newBooking(booking); 
         form.reset();
@@ -49,12 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
             e.target.className = 'selected';
             cBookings.className = '';
             eBookings.className = '';
+            display.innerHTML = '';
             let today = new Date();
             fetch('http://localhost:3000/bookings')
                 .then(res => res.json())
                 .then(bookings => {
                     const today = new Date();
-                    let upComingBookings = bookings.filter(booking => new Date(booking.date) > today)
+                    let upComingBookings = bookings.filter(booking => new Date(booking.date) > today )
                     upComingBookings.forEach(uBooking => renderBooking(uBooking))
                 })
         }
@@ -65,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.target.className = 'selected';
             uBookings.className = '';
             eBookings.className = '';
+            display.innerHTML = '';
             let today = new Date();
             fetch('http://localhost:3000/bookings')
                 .then(res => res.json())
@@ -81,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.target.className = 'selected';
             cBookings.className = '';
             uBookings.className = '';
+            display.innerHTML = '';
             let today = new Date();
             fetch('http://localhost:3000/bookings')
                 .then(res => res.json())
@@ -114,12 +118,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     form.addEventListener('submit', handleSubmit)
+
     uBookings.addEventListener('click', getAllUpcomingBookings)
 
     cBookings.addEventListener('click', getAllCancelledBookings)
 
     eBookings.addEventListener('click', getAllExpiredBookings)
-
 
 
 })
