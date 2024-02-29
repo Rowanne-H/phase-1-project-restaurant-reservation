@@ -8,18 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleSubmit(e) {
         e.preventDefault();
         console.log('e')
-        display.innerHTML = 'GO'
+        
     }
 
     form.addEventListener('submit', handleSubmit)
     uBookings.addEventListener('click', () =>{
-        alert('u')
+        display.innerHTML = 'u'
     })
     cBookings.addEventListener('click', () =>{
-        alert('c')
+        display.innerHTML = 'c'
     })
     eBookings.addEventListener('click', () =>{
-        alert('e')
+        display.innerHTML = 'e'
     })
 
 

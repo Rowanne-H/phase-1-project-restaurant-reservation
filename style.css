@@ -1,6 +1,62 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: "Roboto";
-    font-size:13pt;
+    font-size: 15pt;
     background: #f5f2f0;
+}
+
+h1,
+h3,
+p {
+    text-align: center;
+}
+
+#booking {
+    display: flex;
+}
+
+#new-booking {
+    width: 25%;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+input {
+    line-height: 2;
+    padding: 0 5px 0 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+select {
+    font: inherit;
+    border: none;
+}
+
+#booking-info {
+    width: 75%;
+}
+
+#select {
+    display: flex;
     justify-content: center;
- }
+}
+
+button {
+    border: none;
+    background-color: rgb(227, 227, 227);
+    margin: 10px;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: rgb(255, 213, 79);
+}

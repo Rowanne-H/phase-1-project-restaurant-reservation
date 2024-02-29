@@ -18,42 +18,44 @@
             <form>
                 <label> Date:
                     <input type="date" id="date" name="date" />
-                </label><br />
+                </label>
                 <label> Meals:
-                    <input type="radio" id="lunch" />
-                    <label for="lunch">Lunch</label>
-                    <input type="radio" id="dinner" />
-                    <label for="dinner">Dinner</label>
-                </label><br />
+                    <select id="meals">
+                        <option value="lunch">Lunch</option>
+                        <option value="dinner">Dinner</option>
+                    </select>
+                </label>
                 <label> Number of people:
                     <input type="number" id="number" min="1" max="10" />
-                </label><br />
+                </label>
                 <label> First Name:
-                    <input type="text"  id="first-name" autocomplete="off" />
-                </label><br />
+                    <input type="text" id="first-name" autocomplete="off" />
+                </label>
                 <label> Last Name:
                     <input type="text" id="last-name" />
-                </label><br />
+                </label>
                 <label> Mobile:
                     <input type="tel" id="phone" autocomplete="off" />
-                </label><br />
+                </label>
                 <label> Email:
-                    <input type="email" id="email" autocomplete="off"/>
-                </label><br />
-                <input type="submit" />
+                    <input type="email" id="email" autocomplete="off" />
+                </label>
+                <button id="submit">Submit</button>
             </form>
         </div>
         <div id="booking-info">
             <div>
                 <p id="view-booking">Review And Edit Booking</p>
-                <button id="upcoming-bookings">Upcoming Bookings</button>
-                <button id="cancelled-bookings">Cancelled Bookings</button>
-                <button id="expired-bookings">Expired bookings</button>
+                <div id="select">
+                    <button id="upcoming-bookings">Upcoming Bookings</button>
+                    <button id="cancelled-bookings">Cancelled Bookings</button>
+                    <button id="expired-bookings">Expired bookings</button>
+                </div>
                 <div id="display"></div>
             </div>
         </div>
     </div>
-    
+
 </body>
 
 </html>
