@@ -36,9 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 </select>
             </td>
         `
-        display.appendChild(card)
-
+        display.appendChild(card);
+        document.querySelector('.status').addEventListener('change', (e) => {
+            booking.status = e.target.value
+            console.log(booking)
+        })
     }
+
+    
 
     form.addEventListener('submit', handleSubmit)
     uBookings.addEventListener('click', () =>{

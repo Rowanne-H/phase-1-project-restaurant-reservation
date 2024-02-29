@@ -1,5 +1,3 @@
 {
-    "upcomingBookings": [],
-    "expiredBookings": [],
-    "cancelledBookings": []
+    "bookings": []
 }
