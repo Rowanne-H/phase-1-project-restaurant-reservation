@@ -76,6 +76,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function getAllExpiredBookings(e) {
+        if (e.target.className === '') {
+            e.target.className = 'selected';
+            cBookings.className = '';
+            uBookings.className = '';
+            let today = new Date();
+            fetch('http://localhost:3000/bookings')
+                .then(res => res.json())
+                .then(bookings => {
+                    const today = new Date();
+                    let upComingBookings = bookings.filter(booking => new Date(booking.date) < today)
+                    upComingBookings.forEach(uBooking => renderBooking(uBooking))
+                })
+        }
+    }
+
     function newBooking(booking) {
         fetch('http://localhost:3000/bookings', {
             method: 'POST',
@@ -102,9 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cBookings.addEventListener('click', getAllCancelledBookings)
 
-    eBookings.addEventListener('click', () =>{
-        display.innerHTML = 'e'
-    })
+    eBookings.addEventListener('click', getAllExpiredBookings)
 
 
 
