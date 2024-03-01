@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let mon = today.getMonth() + 1;
         let day = today.getDate() + 1;
         let year = today.getFullYear();
-        if (mon < 10) {mon = '0' + mon}
-        if (day < 10) {day = '0' + day}
+        if (mon < 10) { mon = '0' + mon }
+        if (day < 10) { day = '0' + day }
         let minDate = year + '-' + mon + '-' + day;
         document.querySelector('#date').min = minDate;
     }
@@ -31,15 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
             email: e.target.email.value,
             status: 'current'
         };
-        display.innerHTML = '';
         createTableHeader();
         newBooking(booking);
-        renderBooking(booking);   
+        renderBooking(booking);
         document.querySelectorAll('.status').forEach(bookingStatus => {
             bookingStatus.addEventListener('click', (e) => {
                 alert('Please change booking status under Upcoming Bookings')
             })
-        handleDelete()
+            handleDelete()
         })
         form.reset()
     }
@@ -76,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function createTableHeader() {
+        display.innerHTML = '';
         let tHeaders = document.createElement('tr');
         tHeaders.innerHTML = `
                             <th>Date</th>
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         bookingStatus.addEventListener('click', (e) => {
                             alert('The booking has expired, cannot change its status')
                         })
-                    handleDelete()
+                        handleDelete()
                     })
                 })
         }
@@ -218,7 +218,5 @@ document.addEventListener('DOMContentLoaded', () => {
     cBookings.addEventListener('click', getAllCancelledBookings)
 
     eBookings.addEventListener('click', getAllExpiredBookings)
-
-    
 
 })
