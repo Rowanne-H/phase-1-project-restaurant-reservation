@@ -156,7 +156,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         let dBooking = bookings.find(booking => booking.email === e.target.id)
                         deleteBooking(dBooking.id)
                     })
+                    e.target.parentNode.parentNode.remove()     
             })
+            
         })
     }
 
