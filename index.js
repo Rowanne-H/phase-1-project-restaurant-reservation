@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let cBookings = document.querySelector('#cancelled-bookings');
     let eBookings = document.querySelector('#expired-bookings');
     let display = document.querySelector('#display');
+    let today = new Date();
 
     function selectDateAfterToday() {
         let today = new Date();
@@ -17,34 +18,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     selectDateAfterToday()
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        uBookings.className = '';
-        cBookings.className = '';
-        eBookings.className = '';
-        let booking = {
-            date: e.target.date.value,
-            meal: e.target.meals.value,
-            no: e.target.number.value,
-            name: e.target.name.value,
-            mobile: e.target.mobile.value,
-            email: e.target.email.value,
-            status: 'current'
-        };
-        createTableHeader();
-        newBooking(booking);
-        renderBooking(booking);
-        document.querySelectorAll('.status').forEach(bookingStatus => {
-            bookingStatus.addEventListener('click', (e) => {
-                alert('Please change booking status under Upcoming Bookings')
-            })
-            handleDelete()
-        })
-        form.reset()
+    function createTableHeader() {
+        display.innerHTML = '';
+        let tHeaders = document.createElement('tr');
+        tHeaders.innerHTML = `
+                            <th>Date</th>
+                            <th>Meal</th>
+                            <th>No of ppl</th>
+                            <th>Name</th>
+                            <th>Moble</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                        `
+        display.appendChild(tHeaders);
     }
 
     function renderBooking(booking) {
-        document.querySelector('table').style.visibility = 'visible';
+        display.style.visibility = 'visible';
         let card = document.createElement('tr')
         let text = `<td>${booking.date}</td>
                     <td>${booking.meal}</td>
@@ -74,19 +64,41 @@ document.addEventListener('DOMContentLoaded', () => {
         display.appendChild(card);
     }
 
-    function createTableHeader() {
-        display.innerHTML = '';
-        let tHeaders = document.createElement('tr');
-        tHeaders.innerHTML = `
-                            <th>Date</th>
-                            <th>Meal</th>
-                            <th>No of ppl</th>
-                            <th>Name</th>
-                            <th>Moble</th>
-                            <th>Email</th>
-                            <th>Status</th>
-                        `
-        display.appendChild(tHeaders);
+    function newBooking(booking) {
+        fetch('http://localhost:3000/bookings', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(booking)
+        });
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        uBookings.className = '';
+        cBookings.className = '';
+        eBookings.className = '';
+        let booking = {
+            date: e.target.date.value,
+            meal: e.target.meals.value,
+            no: e.target.number.value,
+            name: e.target.name.value,
+            mobile: e.target.mobile.value,
+            email: e.target.email.value,
+            status: 'current'
+        };
+        createTableHeader();
+        newBooking(booking);
+        renderBooking(booking);
+        document.querySelectorAll('.status').forEach(bookingStatus => {
+            bookingStatus.addEventListener('click', (e) => {
+                alert('Please change booking status under Upcoming Bookings')
+            })
+            handleDelete()
+        })
+        form.reset()
     }
 
     function getAllUpcomingBookings(e) {
@@ -94,13 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
             e.target.className = 'selected';
             cBookings.className = '';
             eBookings.className = '';
-            display.innerHTML = '';
             createTableHeader();
-            let today = new Date();
             fetch('http://localhost:3000/bookings')
                 .then(res => res.json())
                 .then(bookings => {
-                    const today = new Date();
                     let upComingBookings = bookings.filter(booking => new Date(booking.date) > today && booking.status === 'current');
                     upComingBookings.forEach(uBooking => renderBooking(uBooking));
                     handleStatusChange();
@@ -114,13 +123,10 @@ document.addEventListener('DOMContentLoaded', () => {
             e.target.className = 'selected';
             uBookings.className = '';
             eBookings.className = '';
-            display.innerHTML = '';
             createTableHeader();
-            let today = new Date();
             fetch('http://localhost:3000/bookings')
                 .then(res => res.json())
                 .then(bookings => {
-                    const today = new Date();
                     let upComingBookings = bookings.filter(booking => booking.status === 'cancel' && new Date(booking.date) > today);
                     upComingBookings.forEach(uBooking => renderBooking(uBooking));
                     handleStatusChange();
@@ -134,18 +140,15 @@ document.addEventListener('DOMContentLoaded', () => {
             e.target.className = 'selected';
             cBookings.className = '';
             uBookings.className = '';
-            display.innerHTML = '';
             createTableHeader();
-            let today = new Date();
             fetch('http://localhost:3000/bookings')
                 .then(res => res.json())
                 .then(bookings => {
-                    const today = new Date();
                     let upComingBookings = bookings.filter(booking => new Date(booking.date) < today)
                     upComingBookings.forEach(uBooking => renderBooking(uBooking));
                     document.querySelectorAll('.status').forEach(bookingStatus => {
                         bookingStatus.addEventListener('click', (e) => {
-                            alert('The booking has expired, cannot change its status')
+                            alert('The booking has expired, cannot change its status, but you can delete it')
                         })
                         handleDelete()
                     })
@@ -153,12 +156,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function newBooking(booking) {
-        fetch('http://localhost:3000/bookings', {
-            method: 'POST',
+    function updateBooking(booking) {
+        fetch(`http://localhost:3000/bookings/${booking.id}`, {
+            method: 'PATCH',
             headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(booking)
         });
@@ -178,14 +180,13 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
-    function updateBooking(booking) {
-        fetch(`http://localhost:3000/bookings/${booking.id}`, {
-            method: 'PATCH',
+    function deleteBooking(id) {
+        fetch(`http://localhost:3000/bookings/${id}`, {
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(booking)
-        });
+            }
+        })
     }
 
     function handleDelete() {
@@ -200,16 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.target.parentNode.parentNode.remove()
             })
         })
-    }
-
-    function deleteBooking(id) {
-        fetch(`http://localhost:3000/bookings/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-    }
+    }    
 
     form.addEventListener('submit', handleSubmit)
 
