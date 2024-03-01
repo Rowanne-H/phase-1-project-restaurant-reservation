@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             fetch('http://localhost:3000/bookings')
                 .then(res => res.json())
                 .then(bookings => {
-                    let upComingBookings = bookings.filter(booking => new Date(booking.date) > today && booking.status === 'current');
+                    let upComingBookings = bookings.filter(booking => new Date(booking.date) >= today && booking.status === 'current');
                     upComingBookings.forEach(uBooking => renderBooking(uBooking));
                     handleStatusChange();
                     handleDelete()
