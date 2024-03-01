@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         booking.status = 'current';
         display.innerHTML = '';
+        createTableHeader();
         renderBooking(booking);
         newBooking(booking);
         handleStatusChange();
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderBooking(booking) {
-        display.style.visibility = 'visible';
+        document.querySelector('table').style.visibility = 'visible';
         let card = document.createElement('tr')
         let text = `<td>${booking.date}</td>
                     <td>${booking.meal}</td>
@@ -55,12 +56,27 @@ document.addEventListener('DOMContentLoaded', () => {
         display.appendChild(card);
     }
 
+    function createTableHeader() {
+        let tHeaders = document.createElement('tr');
+        tHeaders.innerHTML = `
+                            <th>Date</th>
+                            <th>Meal</th>
+                            <th>No of ppl</th>
+                            <th>Name</th>
+                            <th>Moble</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                        `
+        display.appendChild(tHeaders);
+    }
+
     function getAllUpcomingBookings(e) {
         if (e.target.className === '') {
             e.target.className = 'selected';
             cBookings.className = '';
             eBookings.className = '';
             display.innerHTML = '';
+            createTableHeader();
             let today = new Date();
             fetch('http://localhost:3000/bookings')
                 .then(res => res.json())
@@ -80,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             uBookings.className = '';
             eBookings.className = '';
             display.innerHTML = '';
+            createTableHeader();
             let today = new Date();
             fetch('http://localhost:3000/bookings')
                 .then(res => res.json())
@@ -99,6 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cBookings.className = '';
             uBookings.className = '';
             display.innerHTML = '';
+            createTableHeader();
             let today = new Date();
             fetch('http://localhost:3000/bookings')
                 .then(res => res.json())
