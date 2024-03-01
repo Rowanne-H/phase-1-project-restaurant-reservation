@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let display = document.querySelector('#display');
 
     function handleSubmit(e) {
+        e.preventDefault();
         let booking = {
             date: e.target.date.value,
             meal: e.target.meals.value,
@@ -16,9 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         booking.status = 'current';
         display.innerHTML = '';
+        console.log(booking);
         renderBooking(booking);
+        console.log(booking);
         newBooking(booking); 
-        form.reset();
+        console.log(booking);
+        console.log(booking);
     }
 
     function renderBooking(booking) {
@@ -49,19 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
             </td>
         `
         display.appendChild(card);
-        document.querySelector('.status').addEventListener('change', (e) => {
-            fetch('http://localhost:3000/bookings')
-            .then(res => res.json())
-            .then(bookings => {
-                let changedBooking = bookings.find(booking => booking.email === e.target.id)
-                changedBooking.status = e.target.value;
-                updateBooking(changedBooking)
 
-
-            })
-            
         
-        })
     }
 
     function getAllUpcomingBookings(e) {
@@ -77,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const today = new Date();
                     let upComingBookings = bookings.filter(booking => new Date(booking.date) > today )
                     upComingBookings.forEach(uBooking => renderBooking(uBooking))
+                    changeStatus();
                 })
         }
     }
@@ -143,6 +137,22 @@ document.addEventListener('DOMContentLoaded', () => {
     cBookings.addEventListener('click', getAllCancelledBookings)
 
     eBookings.addEventListener('click', getAllExpiredBookings)
+
+    function changeStatus() {
+        document.querySelectorAll('.status').forEach(bookingStatus => {
+            bookingStatus.addEventListener('change', (e) => {
+                console.log("chang")
+                console.log(bookingStatus)
+                fetch('http://localhost:3000/bookings')
+                .then(res => res.json())
+                .then(bookings => {
+                    let changedBooking = bookings.find(booking => booking.email === e.target.id)
+                    changedBooking.status = e.target.value;
+                    updateBooking(changedBooking)
+                })
+            })
+        })
+    }
 
 
 })
