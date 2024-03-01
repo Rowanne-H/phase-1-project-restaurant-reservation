@@ -18,8 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
         booking.status = 'current';
         display.innerHTML = '';
         renderBooking(booking);
-        changeStatus();
         newBooking(booking);
+        handleStatusChange();
+        handleDelete();
     }
 
     function renderBooking(booking) {
@@ -53,44 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
         display.appendChild(card);
     }
 
-    function changeStatus() {
-        document.querySelectorAll('.status').forEach(bookingStatus => {
-            bookingStatus.addEventListener('change', (e) => {
-                fetch('http://localhost:3000/bookings')
-                    .then(res => res.json())
-                    .then(bookings => {
-                        let changedBooking = bookings.find(booking => booking.id === e.target.id)
-                        changedBooking.status = e.target.value;
-                        updateBooking(changedBooking)
-                    })
-            })
-        })
-    }
-
-    function handleDelete() {
-        document.querySelectorAll('.delete').forEach(deleteBtn => {
-            deleteBtn.addEventListener('click', (e) => {
-                fetch('http://localhost:3000/bookings')
-                    .then(res => res.json())
-                    .then(bookings => {
-                        let dBooking = bookings.find(booking => booking.email === e.target.id)
-                        deleteBooking(dBooking.id)
-
-                    })
-            })
-        })
-    }
-
-    function deleteBooking(id) {
-        console.log(id)
-        fetch(`http://localhost:3000/bookings/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-    }
-
     function getAllUpcomingBookings(e) {
         if (e.target.className === '') {
             e.target.className = 'selected';
@@ -104,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const today = new Date();
                     let upComingBookings = bookings.filter(booking => new Date(booking.date) > today);
                     upComingBookings.forEach(uBooking => renderBooking(uBooking));
-                    changeStatus();
+                    handleStatusChange();
                     handleDelete()
                 })
         }
@@ -123,7 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const today = new Date();
                     let upComingBookings = bookings.filter(booking => booking.status === 'cancel');
                     upComingBookings.forEach(uBooking => renderBooking(uBooking));
-                    changeStatus()
+                    handleStatusChange();
+                    handleDelete()
                 })
         }
     }
@@ -141,7 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const today = new Date();
                     let upComingBookings = bookings.filter(booking => new Date(booking.date) < today)
                     upComingBookings.forEach(uBooking => renderBooking(uBooking));
-                    changeStatus();
+                    handleStatusChange();
+                    handleDelete()
                 })
         }
     }
@@ -157,6 +122,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function handleStatusChange() {
+        document.querySelectorAll('.status').forEach(bookingStatus => {
+            bookingStatus.addEventListener('change', (e) => {
+                fetch('http://localhost:3000/bookings')
+                    .then(res => res.json())
+                    .then(bookings => {
+                        let changedBooking = bookings.find(booking => booking.id === e.target.id)
+                        changedBooking.status = e.target.value;
+                        updateBooking(changedBooking)
+                    })
+            })
+        })
+    }
+
     function updateBooking(booking) {
         fetch(`http://localhost:3000/bookings/${booking.id}`, {
             method: 'PATCH',
@@ -166,6 +145,28 @@ document.addEventListener('DOMContentLoaded', () => {
             body: JSON.stringify(booking)
         });
     }
+
+    function handleDelete() {
+        document.querySelectorAll('.delete').forEach(deleteBtn => {
+            deleteBtn.addEventListener('click', (e) => {
+                fetch('http://localhost:3000/bookings')
+                    .then(res => res.json())
+                    .then(bookings => {
+                        let dBooking = bookings.find(booking => booking.email === e.target.id)
+                        deleteBooking(dBooking.id)
+                    })
+            })
+        })
+    }
+
+    function deleteBooking(id) {
+        fetch(`http://localhost:3000/bookings/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }    
 
     form.addEventListener('submit', handleSubmit)
 

@@ -49,26 +49,6 @@
       "mobile": "0405666666",
       "email": "joy@hotmail.com",
       "status": "cancel"
-    },
-    {
-      "id": "ec24",
-      "date": "2024-03-23",
-      "meal": "dinner",
-      "no": "3",
-      "name": "Andy Wang",
-      "mobile": "0402999999",
-      "email": "and@hotmail.com",
-      "status": "current"
-    },
-    {
-      "id": "33a0",
-      "date": "2024-02-25",
-      "meal": "lunch",
-      "no": "1",
-      "name": "w",
-      "mobile": "2",
-      "email": "",
-      "status": "current"
     }
   ]
 }
