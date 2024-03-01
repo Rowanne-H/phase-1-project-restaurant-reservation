@@ -17,13 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         booking.status = 'current';
         display.innerHTML = '';
-        console.log(booking);
         renderBooking(booking);
         changeStatus();
-        console.log(booking);
-        newBooking(booking); 
-        console.log(booking);
-        console.log(booking);
+        newBooking(booking);
     }
 
     function renderBooking(booking) {
@@ -36,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td>${booking.Mobile}</td>
                     <td>${booking.email}</td>
                     <td>
-                    <select id= "${booking.email}" class="status">
+                    <select id= "${booking.id}" class="status">
                     `
         if (booking.status === 'current') {
             text += `
@@ -144,12 +140,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function changeStatus() {
         document.querySelectorAll('.status').forEach(bookingStatus => {
             bookingStatus.addEventListener('change', (e) => {
-                console.log("chang")
-                console.log(bookingStatus)
                 fetch('http://localhost:3000/bookings')
                 .then(res => res.json())
                 .then(bookings => {
-                    let changedBooking = bookings.find(booking => booking.email === e.target.id)
+                    let changedBooking = bookings.find(booking => booking.id === e.target.id)
                     changedBooking.status = e.target.value;
                     updateBooking(changedBooking)
                 })

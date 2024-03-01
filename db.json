@@ -8,7 +8,7 @@
       "name": "John Davies",
       "mobile": "0411110110",
       "email": "john@hotmail.com",
-      "status": "cancel"
+      "status": "current"
     },
     {
       "id": "7bff",
@@ -98,7 +98,7 @@
       "name": "",
       "mobile": "",
       "email": "",
-      "status": "cancel"
+      "status": "current"
     },
     {
       "id": "d240",
