@@ -45,14 +45,50 @@ document.addEventListener('DOMContentLoaded', () => {
                     <option value="current">current</option>
                     `
         }
-        card.innerHTML = text+`          
+        card.innerHTML = text + `          
                 </select>
-                <button class="delete">Delete</button>
+                <button class="delete" id="${booking.email}">Delete</button>
             </td>
         `
         display.appendChild(card);
+    }
 
-        
+    function changeStatus() {
+        document.querySelectorAll('.status').forEach(bookingStatus => {
+            bookingStatus.addEventListener('change', (e) => {
+                fetch('http://localhost:3000/bookings')
+                    .then(res => res.json())
+                    .then(bookings => {
+                        let changedBooking = bookings.find(booking => booking.id === e.target.id)
+                        changedBooking.status = e.target.value;
+                        updateBooking(changedBooking)
+                    })
+            })
+        })
+    }
+
+    function handleDelete() {
+        document.querySelectorAll('.delete').forEach(deleteBtn => {
+            deleteBtn.addEventListener('click', (e) => {
+                fetch('http://localhost:3000/bookings')
+                    .then(res => res.json())
+                    .then(bookings => {
+                        let dBooking = bookings.find(booking => booking.email === e.target.id)
+                        deleteBooking(dBooking.id)
+
+                    })
+            })
+        })
+    }
+
+    function deleteBooking(id) {
+        console.log(id)
+        fetch(`http://localhost:3000/bookings/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
     }
 
     function getAllUpcomingBookings(e) {
@@ -68,7 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const today = new Date();
                     let upComingBookings = bookings.filter(booking => new Date(booking.date) > today);
                     upComingBookings.forEach(uBooking => renderBooking(uBooking));
-                    changeStatus()
+                    changeStatus();
+                    handleDelete()
                 })
         }
     }
@@ -137,20 +174,5 @@ document.addEventListener('DOMContentLoaded', () => {
     cBookings.addEventListener('click', getAllCancelledBookings)
 
     eBookings.addEventListener('click', getAllExpiredBookings)
-
-    function changeStatus() {
-        document.querySelectorAll('.status').forEach(bookingStatus => {
-            bookingStatus.addEventListener('change', (e) => {
-                fetch('http://localhost:3000/bookings')
-                .then(res => res.json())
-                .then(bookings => {
-                    let changedBooking = bookings.find(booking => booking.id === e.target.id)
-                    changedBooking.status = e.target.value;
-                    updateBooking(changedBooking)
-                })
-            })
-        })
-    }
-
 
 })
