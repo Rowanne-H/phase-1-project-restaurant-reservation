@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td>${booking.Mobile}</td>
                     <td>${booking.email}</td>
                     <td>
-                    <select class="status">
+                    <select id= "${booking.email}" class="status">
                     `
         if (booking.status === 'current') {
             text += `
@@ -49,10 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </td>
         `
         display.appendChild(card);
-        document.querySelector('.status').addEventListener('change', (e) => {
-            booking.status = e.target.value
-            updateBooking(booking)
-        })
+        console.log(document.querySelectorAll('.status'))
     }
 
     function getAllUpcomingBookings(e) {
