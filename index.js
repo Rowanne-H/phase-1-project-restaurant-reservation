@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function selectDateAfterToday() {
         let today = new Date();
         let mon = today.getMonth() + 1;
-        let day = today.getDate();
+        let day = today.getDate() + 1;
         let year = today.getFullYear();
         if (mon < 10) {mon = '0' + mon}
         if (day < 10) {day = '0' + day}
