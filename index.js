@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(res => res.json())
                 .then(bookings => {
                     const today = new Date();
-                    let upComingBookings = bookings.filter(booking => new Date(booking.date) > today);
+                    let upComingBookings = bookings.filter(booking => new Date(booking.date) > today && booking.status === 'current');
                     upComingBookings.forEach(uBooking => renderBooking(uBooking));
                     handleStatusChange();
                     handleDelete()
