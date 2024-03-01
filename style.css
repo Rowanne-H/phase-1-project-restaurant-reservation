@@ -57,19 +57,19 @@ button:hover {
     background-color: rgb(255, 213, 79);
 }
 
-#display {
+table {
     border-collapse: collapse;
     width: 100%;
     visibility: hidden;
 }
 
-#display td, #display th {
+td, th {
     border: 1px solid #ddd;
     padding: 5px;
     text-align: left;
 }
 
-#display th, .selected {
+th, .selected {
     background-color: rgb(241, 220, 152);
 }
 
