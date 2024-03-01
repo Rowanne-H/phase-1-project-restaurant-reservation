@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
             fetch('http://localhost:3000/bookings')
                 .then(res => res.json())
                 .then(bookings => {
-                    let upComingBookings = bookings.filter(booking => booking.status === 'cancel' && new Date(booking.date) > today);
+                    let upComingBookings = bookings.filter(booking => booking.status === 'cancel' && new Date(booking.date) >= today);
                     upComingBookings.forEach(uBooking => renderBooking(uBooking));
                     handleStatusChange();
                     handleDelete()
