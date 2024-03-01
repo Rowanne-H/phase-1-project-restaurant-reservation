@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         newBooking(booking);
         handleStatusChange();
         handleDelete();
+        form.reset()
     }
 
     function renderBooking(booking) {
