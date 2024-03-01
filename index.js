@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         display.innerHTML = '';
         console.log(booking);
         renderBooking(booking);
+        changeStatus();
         console.log(booking);
         newBooking(booking); 
         console.log(booking);
@@ -68,9 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(res => res.json())
                 .then(bookings => {
                     const today = new Date();
-                    let upComingBookings = bookings.filter(booking => new Date(booking.date) > today )
-                    upComingBookings.forEach(uBooking => renderBooking(uBooking))
-                    changeStatus();
+                    let upComingBookings = bookings.filter(booking => new Date(booking.date) > today);
+                    upComingBookings.forEach(uBooking => renderBooking(uBooking));
+                    changeStatus()
                 })
         }
     }
@@ -86,8 +87,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(res => res.json())
                 .then(bookings => {
                     const today = new Date();
-                    let upComingBookings = bookings.filter(booking => booking.status === 'cancel')
-                    upComingBookings.forEach(uBooking => renderBooking(uBooking))
+                    let upComingBookings = bookings.filter(booking => booking.status === 'cancel');
+                    upComingBookings.forEach(uBooking => renderBooking(uBooking));
+                    changeStatus()
                 })
         }
     }
@@ -104,7 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(bookings => {
                     const today = new Date();
                     let upComingBookings = bookings.filter(booking => new Date(booking.date) < today)
-                    upComingBookings.forEach(uBooking => renderBooking(uBooking))
+                    upComingBookings.forEach(uBooking => renderBooking(uBooking));
+                    changeStatus();
                 })
         }
     }
