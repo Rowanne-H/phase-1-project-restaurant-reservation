@@ -14,8 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (day < 10) {day = '0' + day}
         let minDate = year + '-' + mon + '-' + day;
         document.querySelector('#date').min = minDate;
-        console.log(minDate)
-
     }
     selectDateAfterToday()
 
@@ -31,14 +29,18 @@ document.addEventListener('DOMContentLoaded', () => {
             name: e.target.name.value,
             mobile: e.target.mobile.value,
             email: e.target.email.value,
+            status: 'current'
         };
-        booking.status = 'current';
         display.innerHTML = '';
         createTableHeader();
-        renderBooking(booking);
         newBooking(booking);
-        handleStatusChange();
-        handleDelete();
+        renderBooking(booking);   
+        document.querySelectorAll('.status').forEach(bookingStatus => {
+            bookingStatus.addEventListener('click', (e) => {
+                alert('Please change booking status under Upcoming Bookings')
+            })
+        handleDelete()
+        })
         form.reset()
     }
 
@@ -146,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             alert('The booking has expired, cannot change its status')
                         })
                     handleDelete()
-                })
+                    })
                 })
         }
     }
