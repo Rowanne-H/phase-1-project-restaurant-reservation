@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td>${booking.meal}</td>
                     <td>${booking.no}</td>
                     <td>${booking.name}</td>
-                    <td>${booking.Mobile}</td>
+                    <td>${booking.mobile}</td>
                     <td>${booking.email}</td>
                     <td>
                     <select id= "${booking.id}" class="status">
@@ -156,9 +156,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         let dBooking = bookings.find(booking => booking.email === e.target.id)
                         deleteBooking(dBooking.id)
                     })
-                    e.target.parentNode.parentNode.remove()     
+                e.target.parentNode.parentNode.remove()
             })
-            
         })
     }
 
@@ -169,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Content-Type': 'application/json'
             }
         })
-    }    
+    }
 
     form.addEventListener('submit', handleSubmit)
 
