@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         card.innerHTML = text+`          
                 </select>
+                <button class="delete">Delete</button>
             </td>
         `
         display.appendChild(card);
