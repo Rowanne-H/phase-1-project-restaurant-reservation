@@ -5,6 +5,20 @@ document.addEventListener('DOMContentLoaded', () => {
     let eBookings = document.querySelector('#expired-bookings');
     let display = document.querySelector('#display');
 
+    function selectDateAfterToday() {
+        let today = new Date();
+        let mon = today.getMonth() + 1;
+        let day = today.getDate();
+        let year = today.getFullYear();
+        if (mon < 10) {mon = '0' + mon}
+        if (day < 10) {day = '0' + day}
+        let minDate = year + '-' + mon + '-' + day;
+        document.querySelector('#date').min = minDate;
+        console.log(minDate)
+
+    }
+    selectDateAfterToday()
+
     function handleSubmit(e) {
         e.preventDefault();
         uBookings.className = '';
@@ -202,5 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cBookings.addEventListener('click', getAllCancelledBookings)
 
     eBookings.addEventListener('click', getAllExpiredBookings)
+
+    
 
 })
