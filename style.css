@@ -48,7 +48,6 @@ select {
 
 button {
     border: none;
-    background-color: rgb(227, 227, 227);
     margin: 10px;
     padding: 5px 10px 5px 10px;
     border-radius: 5px;
@@ -56,11 +55,11 @@ button {
     background-color: rgb(222, 222, 193);
 }
 
-button:hover, tr:hover {
+button:hover {
     background-color: rgb(255, 213, 79);
 }
 
-table {
+#display {
     border-collapse: collapse;
     width: 100%;
     visibility: hidden;
@@ -72,7 +71,7 @@ td, th {
     text-align: left;
 }
 
-th, .selected {
+th, .selected, tr:hover {
     background-color: rgb(241, 220, 152);
 }
 
