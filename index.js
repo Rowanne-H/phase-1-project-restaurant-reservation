@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleSubmit(e) {
         e.preventDefault();
+        uBookings.className = '';
+        cBookings.className = '';
+        eBookings.className = '';
         let booking = {
             date: e.target.date.value,
             meal: e.target.meals.value,
