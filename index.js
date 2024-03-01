@@ -49,7 +49,19 @@ document.addEventListener('DOMContentLoaded', () => {
             </td>
         `
         display.appendChild(card);
-        console.log(document.querySelectorAll('.status'))
+        document.querySelector('.status').addEventListener('change', (e) => {
+            fetch('http://localhost:3000/bookings')
+            .then(res => res.json())
+            .then(bookings => {
+                let changedBooking = bookings.find(booking => booking.email === e.target.id)
+                changedBooking.status = e.target.value;
+                updateBooking(changedBooking)
+
+
+            })
+            
+        
+        })
     }
 
     function getAllUpcomingBookings(e) {

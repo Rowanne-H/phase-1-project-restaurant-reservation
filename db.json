@@ -8,7 +8,7 @@
       "name": "John Davies",
       "mobile": "0411110110",
       "email": "john@hotmail.com",
-      "status": "cancel"
+      "status": "current"
     },
     {
       "id": "7bff",
@@ -38,7 +38,7 @@
       "name": "Rose He",
       "mobile": "0406070808",
       "email": "r@yahoo.com",
-      "status": "current"
+      "status": "cancel"
     }
   ]
 }
