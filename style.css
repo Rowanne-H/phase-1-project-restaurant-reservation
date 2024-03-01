@@ -56,7 +56,7 @@ button {
     background-color: rgb(222, 222, 193);
 }
 
-button:hover {
+button:hover, tr:hover {
     background-color: rgb(255, 213, 79);
 }
 

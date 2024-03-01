@@ -127,8 +127,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     const today = new Date();
                     let upComingBookings = bookings.filter(booking => new Date(booking.date) < today)
                     upComingBookings.forEach(uBooking => renderBooking(uBooking));
-                    handleStatusChange();
+                    document.querySelectorAll('.status').forEach(bookingStatus => {
+                        bookingStatus.addEventListener('click', (e) => {
+                            alert('The booking has expired, cannot change its status')
+                        })
                     handleDelete()
+                })
                 })
         }
     }
