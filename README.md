@@ -1,5 +1,5 @@
 # Restaurant Reservation System for Fantastic BBQ 
-### It is a a Single Page Application (SPA) for booking system of Fantastic BBQ
+### It is a Single Page Application (SPA) for booking system of Fantastic BBQ
 ### This system is built with HTML, CSS, and JavaScript
 #### On New Booking section, client can record a new booking to system by keying booking information in the form and clicking Submit button.
 1. Date: the date value must be after today.
